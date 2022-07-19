@@ -1,0 +1,20 @@
+{
+  "name": "git-test",
+  "version": "1.0.0",
+  "description": "This is a test directory to learn Git and Node\t",
+  "main": "index.html",
+  "scripts": {
+    "start":"npm run lite",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lite":"lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "C:/Users/ADMIN/OneDrive/Documents/@ Web Develop/FUNIX/Exercise/REACT JS/LAB01/LAB01_2/git-test/.git"
+  },
+  "author": "Thao",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
