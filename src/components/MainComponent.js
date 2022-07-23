@@ -34,12 +34,29 @@ class Main extends Component {
       );
     };
 
+    const DishWithId = () => {
+      let params = useParams();
+      return (
+        <DishDetail
+          dish={
+            this.state.dishes.filter(
+              (dish) => dish.id === parseInt(params.dishId, 10)
+            )[0]
+          }
+          comments={this.state.comments.filter(
+            (comment) => comment.dishId === parseInt(params.dishId, 10)
+          )}
+        />
+      );
+    };
+
     return (
       <div>
         <Header />
         <Routes>
           <Route path="home" element={<HomePage />} />
           <Route path="menu" element={<Menu dishes={this.state.dishes} />} />
+          <Route path="menu/:dishId" element={<DishWithId />} />
           <Route path="contactus" element={<Contact />} />
           <Route path="*" element={<Navigate to="/home" replace />} />
         </Routes>
