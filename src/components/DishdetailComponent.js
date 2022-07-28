@@ -16,9 +16,7 @@ function RenderDish({ dish }) {
       <Card>
         <CardImg width="100%" src={dish.image} alt={dish.name} />
         <CardBody>
-          <h5>
-            <CardTitle>{dish.name}</CardTitle>
-          </h5>
+          <CardTitle tag="h5">{dish.name}</CardTitle>
           <CardText>{dish.description}</CardText>
         </CardBody>
       </Card>
