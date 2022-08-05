@@ -125,20 +125,14 @@ const StaffList = (props) => {
       errors.name = "Vui lòng nhập tối đa 30 ký tự";
     }
 
-    const regexddmmyyyy =
-      /^(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/]\d\d\d\d$/;
     //doB
     if (newStaff.touched.doB && doB.length < 1) {
       errors.doB = "Vui lòng không bỏ trống";
-    } else if (newStaff.touched.doB && !regexddmmyyyy.test(doB)) {
-      errors.doB = "Vui lòng nhập theo định dạng dd/mm/yyyy";
     }
 
     //startDay
     if (newStaff.touched.startDate && startDate.length < 1) {
       errors.startDate = "Vui lòng không bỏ trống";
-    } else if (newStaff.touched.startDate && !regexddmmyyyy.test(startDate)) {
-      errors.startDate = "Vui lòng nhập theo định dạng dd/mm/yyyy";
     }
 
     //Salary Scale
@@ -306,7 +300,7 @@ const StaffList = (props) => {
                     </Label>
                     <Col md={12}>
                       <Input
-                        type="text"
+                        type="date"
                         id="doB"
                         name="doB"
                         placeholder="dd/mm/yyyy"
@@ -325,7 +319,7 @@ const StaffList = (props) => {
                     </Label>
                     <Col md={12}>
                       <Input
-                        type="text"
+                        type="date"
                         id="startDate"
                         name="startDate"
                         placeholder="dd/mm/yyyy"
