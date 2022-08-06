@@ -3,12 +3,8 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   Card,
-  CardImg,
   CardBody,
   CardHeader,
-  CardTitle,
-  CardSubtitle,
-  CardText,
   Media,
 } from "reactstrap";
 import { Link } from "react-router-dom";
