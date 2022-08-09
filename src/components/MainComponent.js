@@ -12,6 +12,7 @@ import {
   Navigate,
   useNavigate,
   useParams,
+  useLocation,
 } from "react-router-dom";
 import { connect } from "react-redux";
 import {
@@ -21,6 +22,7 @@ import {
   fetchPromos,
 } from "../redux/ActionCreators";
 import { actions } from "react-redux-form";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 const mapStateToProps = (state) => {
   return {
@@ -99,22 +101,33 @@ class Main extends Component {
     return (
       <div>
         <Header />
-        <Routes>
-          <Route path="home" element={<HomePage />} />
-          <Route
-            path="aboutus"
-            element={<About leaders={this.props.leaders} />}
-          />
-          <Route path="menu" element={<Menu dishes={this.props.dishes} />} />
-          <Route path="menu/:dishId" element={<DishWithId />} />
-          <Route
-            path="contactus"
-            element={
-              <Contact resetFeedbackForm={this.props.resetFeedbackForm} />
-            }
-          />
-          <Route path="*" element={<Navigate to="/home" replace />} />
-        </Routes>
+        <TransitionGroup>
+          <CSSTransition
+            key={this.props.location.key}
+            classNames="page"
+            timeout={300}
+          >
+            <Routes>
+              <Route path="home" element={<HomePage />} />
+              <Route
+                path="aboutus"
+                element={<About leaders={this.props.leaders} />}
+              />
+              <Route
+                path="menu"
+                element={<Menu dishes={this.props.dishes} />}
+              />
+              <Route path="menu/:dishId" element={<DishWithId />} />
+              <Route
+                path="contactus"
+                element={
+                  <Contact resetFeedbackForm={this.props.resetFeedbackForm} />
+                }
+              />
+              <Route path="*" element={<Navigate to="/home" replace />} />
+            </Routes>
+          </CSSTransition>
+        </TransitionGroup>
         <Footer />
       </div>
     );
@@ -124,7 +137,8 @@ class Main extends Component {
 export const withRouter = (Component) => {
   const Wrapper = (props) => {
     const history = useNavigate();
-    return <Component history={history} {...props} />;
+    const location = useLocation();
+    return <Component history={history} location={location} {...props} />;
   };
   return Wrapper;
 };
