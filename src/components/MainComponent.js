@@ -15,7 +15,7 @@ import {
 } from "react-router-dom";
 import { connect } from "react-redux";
 import {
-  addComment,
+  postComment,
   fetchDishes,
   fetchComments,
   fetchPromos,
@@ -32,8 +32,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  addComment: (dishId, rating, author, comment) =>
-    dispatch(addComment(dishId, rating, author, comment)),
+  postComment: (dishId, rating, author, comment) =>
+    dispatch(postComment(dishId, rating, author, comment)),
   fetchDishes: () => {
     dispatch(fetchDishes());
   },
@@ -60,15 +60,19 @@ class Main extends Component {
   render() {
     const HomePage = () => {
       return (
-        <Home 
-              dish={this.props.dishes.dishes.filter((dish) => dish.featured)[0]}
-              dishesLoading={this.props.dishes.isLoading}
-              dishesErrMess={this.props.dishes.errMess}
-              promotion={this.props.promotions.promotions.filter((promo) => promo.featured)[0]}
-              promoLoading={this.props.promotions.isLoading}
-              promoErrMess={this.props.promotions.errMess}
-              leader={this.props.leaders.filter((leader) => leader.featured)[0]}
-          />
+        <Home
+          dish={this.props.dishes.dishes.filter((dish) => dish.featured)[0]}
+          dishesLoading={this.props.dishes.isLoading}
+          dishesErrMess={this.props.dishes.errMess}
+          promotion={
+            this.props.promotions.promotions.filter(
+              (promo) => promo.featured
+            )[0]
+          }
+          promoLoading={this.props.promotions.isLoading}
+          promoErrMess={this.props.promotions.errMess}
+          leader={this.props.leaders.filter((leader) => leader.featured)[0]}
+        />
       );
     };
 
@@ -87,7 +91,7 @@ class Main extends Component {
             (comment) => comment.dishId === parseInt(params.dishId, 10)
           )}
           commentsErrMess={this.props.comments.errMess}
-          addComment={this.props.addComment}
+          postComment={this.props.postComment}
         />
       );
     };
